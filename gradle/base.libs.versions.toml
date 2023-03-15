@@ -1,0 +1,41 @@
+[versions]
+kotlin = "1.8.0"
+kotlin-coroutines = "1.6.4"
+timber = "5.0.1"
+google-services = "4.3.15"
+google-firebase-bom = "31.2.2"
+google-firebase-crashlytics-gradle = "2.9.4"
+gson = "2.10"
+
+[libraries]
+# Gradle
+kotlin-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+google-services-gradle = { module = "com.google.gms:google-services", version.ref = "google-services" }
+google-firebase-crashlytics-gradle = { module = "com.google.firebase:firebase-crashlytics-gradle", version.ref = "google-firebase-crashlytics-gradle" }
+# Core
+kotlin-stdlibJdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
+kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlin-coroutines" }
+timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
+# Firebase
+google-firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "google-firebase-bom" }
+google-firebase-analytics = { module = "com.google.firebase:firebase-analytics-ktx" }
+google-firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics-ktx" }
+google-firebase-storage = { module = "com.google.firebase:firebase-storage-ktx" }
+#Gson
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+
+[bundles]
+core = [
+    "kotlin-coroutines",
+    "kotlin-stdlibJdk8",
+    "kotlin-reflect",
+    "timber"
+]
+
+[plugins]
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+kotlin-parcelize = { id = "kotlin-parcelize" }
+google-services = { id = "com.google.gms.google-services" }
+google-firebase-crashlytics = { id = "com.google.firebase.crashlytics" }
