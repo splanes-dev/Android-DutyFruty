@@ -4,6 +4,7 @@
     <application>
         <activity
             android:name=".DutyFrutyActivity"
+            android:theme="@style/Theme.DutyFruty.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

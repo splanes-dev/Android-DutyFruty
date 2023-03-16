@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="sign_me_up">Sign me up</string>
+    <string name="field_mandatory">Mandatory field</string>
+    <string name="field_invalid_email_format">Invalid email format</string>
+    <string name="field_password_weak">Password must be 8 chars length and contains, at least, an uppercase, lowercase and a number</string>
+</resources>

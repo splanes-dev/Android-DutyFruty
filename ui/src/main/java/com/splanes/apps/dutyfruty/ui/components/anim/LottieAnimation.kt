@@ -24,6 +24,6 @@ fun LottieAnimation(
     com.airbnb.lottie.compose.LottieAnimation(
         modifier = modifier,
         composition = composition,
-        progress = { animState }
+        progress = { animState },
     )
 }

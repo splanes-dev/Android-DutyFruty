@@ -1,0 +1,6 @@
+<resources>
+    <style name="Theme.DutyFruty" parent="Theme.Material3.DayNight.NoActionBar"/>
+    <style name="Theme.DutyFruty.SplashScreen" parent="Theme.SplashScreen">
+        <item name="postSplashScreenTheme">@style/Theme.DutyFruty</item>
+    </style>
+</resources>

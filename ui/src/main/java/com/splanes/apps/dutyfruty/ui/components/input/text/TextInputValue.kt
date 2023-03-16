@@ -1,4 +1,4 @@
-package com.splanes.apps.dutyfruty.ui.components.form
+package com.splanes.apps.dutyfruty.ui.components.input.text
 
 sealed class TextInputValue(open val text: String? = null) {
 

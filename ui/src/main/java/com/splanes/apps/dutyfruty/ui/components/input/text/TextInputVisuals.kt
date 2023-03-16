@@ -1,4 +1,4 @@
-package com.splanes.apps.dutyfruty.ui.components.form
+package com.splanes.apps.dutyfruty.ui.components.input.text
 
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.ui.graphics.vector.ImageVector

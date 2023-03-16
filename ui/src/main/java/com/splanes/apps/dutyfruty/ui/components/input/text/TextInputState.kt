@@ -1,4 +1,4 @@
-package com.splanes.apps.dutyfruty.ui.components.form
+package com.splanes.apps.dutyfruty.ui.components.input.text
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
