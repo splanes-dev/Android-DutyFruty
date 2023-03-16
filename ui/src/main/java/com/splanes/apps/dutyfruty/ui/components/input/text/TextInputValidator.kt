@@ -1,4 +1,4 @@
-package com.splanes.apps.dutyfruty.ui.components.form
+package com.splanes.apps.dutyfruty.ui.components.input.text
 
 import android.util.Patterns
 
