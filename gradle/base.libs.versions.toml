@@ -3,7 +3,7 @@ kotlin = "1.8.0"
 kotlin-coroutines = "1.6.4"
 timber = "5.0.1"
 google-services = "4.3.15"
-google-firebase-bom = "31.2.2"
+google-firebase-bom = "31.2.3"
 google-firebase-crashlytics-gradle = "2.9.4"
 gson = "2.10"
 
@@ -21,7 +21,8 @@ timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 google-firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "google-firebase-bom" }
 google-firebase-analytics = { module = "com.google.firebase:firebase-analytics-ktx" }
 google-firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics-ktx" }
-google-firebase-storage = { module = "com.google.firebase:firebase-storage-ktx" }
+google-firebase-auth = { module = "com.google.firebase:firebase-auth-ktx" }
+google-firebase-database = { module = "com.google.firebase:firebase-database-ktx" }
 #Gson
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 

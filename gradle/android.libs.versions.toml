@@ -24,6 +24,7 @@ android-activity_compose = "1.6.1"
 android-compose-navigation = "2.6.0-alpha07"
 android-accompanist = "0.28.0"
 android-lifecycle = "2.6.0"
+android-security = "1.1.0-alpha05"
 
 [libraries]
 # Gradle
@@ -58,6 +59,7 @@ android-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-run
 android-lifecycle-viewModelCompose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "android-lifecycle-compose" }
 android-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "android-lifecycle-compose" }
 android-lifecycle-viewmodel-savedstate = { module = "androidx.lifecycle:lifecycle-viewmodel-savedstate", version.ref = "android-lifecycle-compose" }
+android-security-crypto = { module = "androidx.security:security-crypto", version.ref = "android-security" }
 # Test
 junit-unit = { module = "junit:junit", version.ref = "junit-unit" }
 mockk-unit = { module = "io.mockk:mockk", version.ref = "mockk" }

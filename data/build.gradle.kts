@@ -6,14 +6,14 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
         release {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -25,5 +25,7 @@ android {
 dependencies {
     implementation(projects.domain)
     implementation(baseLibs.gson)
-    implementation(baseLibs.google.firebase.storage)
+    implementation(androidLibs.android.security.crypto)
+    implementation(baseLibs.google.firebase.auth)
+    implementation(baseLibs.google.firebase.database)
 }

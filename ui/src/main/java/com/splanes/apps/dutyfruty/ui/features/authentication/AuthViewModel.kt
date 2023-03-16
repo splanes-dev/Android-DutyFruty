@@ -1,8 +1,10 @@
 package com.splanes.apps.dutyfruty.ui.features.authentication
 
 import com.splanes.apps.dutyfruty.domain.common.KnownError
-import com.splanes.apps.dutyfruty.domain.features.authentication.model.SignInData
-import com.splanes.apps.dutyfruty.domain.features.authentication.usecase.GetSignInDataUseCase
+import com.splanes.apps.dutyfruty.domain.features.authentication.model.CredentialsData
+import com.splanes.apps.dutyfruty.domain.features.authentication.usecase.GetCredentialsUseCase
+import com.splanes.apps.dutyfruty.domain.features.authentication.usecase.SignInUseCase
+import com.splanes.apps.dutyfruty.domain.features.authentication.usecase.SignUpUseCase
 import com.splanes.apps.dutyfruty.ui.common.viewmodel.BaseViewModel
 import com.splanes.apps.dutyfruty.ui.features.authentication.components.form.SignUpFormData
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,7 +16,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AuthViewModel @Inject constructor(
-    private val getSignInDataUseCase: GetSignInDataUseCase,
+    private val getCredentialsUseCase: GetCredentialsUseCase,
+    private val signInUseCase: SignInUseCase,
+    private val signUpUseCase: SignUpUseCase,
 ) : BaseViewModel() {
 
     private val viewModelState: MutableStateFlow<ViewModelState> =
@@ -31,12 +35,12 @@ class AuthViewModel @Inject constructor(
     private fun fetchSignInData() {
         launch {
             viewModelState.update { state -> state.copy(isLoading = true) }
-            getSignInDataUseCase()
+            getCredentialsUseCase()
                 .onSuccess { signInData ->
                     viewModelState.update { state ->
                         state.copy(
                             isLoading = false,
-                            signInData = signInData,
+                            credentialsData = signInData,
                         )
                     }
                 }
@@ -57,10 +61,10 @@ class AuthViewModel @Inject constructor(
     private data class ViewModelState(
         val isLoading: Boolean = true,
         val error: KnownError? = null,
-        val signInData: SignInData? = null,
+        val credentialsData: CredentialsData? = null,
     ) {
         fun authState(): AuthState =
-            when (signInData) {
+            when (credentialsData) {
                 null -> AuthState.SignUp(
                     loading = isLoading,
                     error = error,
