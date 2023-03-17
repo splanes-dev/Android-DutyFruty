@@ -11,6 +11,7 @@ import androidx.compose.material.icons.rounded.PersonPin
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -25,7 +26,7 @@ import com.splanes.apps.dutyfruty.ui.theme.DutyFrutyTheme
 import kotlinx.coroutines.launch
 
 @Composable
-fun AuthForm(
+fun SignUpForm(
     modifier: Modifier = Modifier,
     onSubmit: (SignUpFormData) -> Unit,
 ) {
@@ -47,6 +48,8 @@ fun AuthForm(
             ),
         )
 
+        Spacer(modifier = Modifier.height(16.dp))
+
         TextInput(
             state = emailState,
             visuals = TextInputVisuals(
@@ -55,6 +58,8 @@ fun AuthForm(
                 inputType = TextInputVisuals.InputType.Email,
             ),
         )
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         TextInput(
             state = passwordState,
@@ -65,9 +70,10 @@ fun AuthForm(
             ),
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(32.dp))
 
         Button(
+            modifier = Modifier.align(Alignment.CenterHorizontally),
             text = stringResource(id = R.string.sign_me_up),
             onClick = {
                 coroutineScope.launch {
@@ -97,7 +103,7 @@ fun AuthForm(
 private fun AuthFormPreview() {
     DutyFrutyTheme {
         Column(modifier = Modifier.background(MaterialTheme.colorScheme.surface)) {
-            AuthForm(onSubmit = {})
+            SignUpForm(onSubmit = {})
         }
     }
 }

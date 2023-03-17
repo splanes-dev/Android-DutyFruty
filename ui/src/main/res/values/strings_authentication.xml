@@ -7,4 +7,8 @@
     <string name="field_mandatory">Mandatory field</string>
     <string name="field_invalid_email_format">Invalid email format</string>
     <string name="field_password_weak">Password must be 8 chars length and contains, at least, an uppercase, lowercase and a number</string>
+    <string name="sign_up_subtitle">
+        Fill the following form to sign up and start to schedule your tasks properly 🤩
+    </string>
+
 </resources>
