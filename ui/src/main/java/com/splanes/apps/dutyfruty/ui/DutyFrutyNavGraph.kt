@@ -25,7 +25,7 @@ fun DutyFrutyNavGraph(
             val viewModel: AuthViewModel = hiltViewModel()
             AuthRoute(
                 viewModel = viewModel,
-                navToDashboard = navActions.navToDashboard
+                navToDashboard = navActions.navToDashboard,
             )
         }
         composable(DutyFrutyDestinations.Dashboard) {

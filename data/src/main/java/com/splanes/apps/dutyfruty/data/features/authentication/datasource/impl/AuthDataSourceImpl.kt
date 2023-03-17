@@ -23,7 +23,7 @@ class AuthDataSourceImpl @Inject constructor(
 
     override suspend fun signUp(credentials: CredentialsEntity): Boolean {
         val signUpSuccess = runCatching {
-            firebaseAuth.signInWithEmailAndPassword(
+            firebaseAuth.createUserWithEmailAndPassword(
                 credentials.email.orEmpty(),
                 credentials.password.orEmpty(),
             ).await()
@@ -39,6 +39,17 @@ class AuthDataSourceImpl @Inject constructor(
         }
 
         return signUpSuccess
+    }
+
+    override suspend fun signIn(credentials: CredentialsEntity): Boolean {
+        val signInSuccess = runCatching {
+            firebaseAuth.signInWithEmailAndPassword(
+                credentials.email.orEmpty(),
+                credentials.password.orEmpty(),
+            ).await()
+        }.isSuccess
+
+        return signInSuccess
     }
 }
 

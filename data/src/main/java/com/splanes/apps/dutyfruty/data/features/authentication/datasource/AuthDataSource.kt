@@ -8,4 +8,6 @@ interface AuthDataSource {
     suspend fun save(credentials: CredentialsEntity): Boolean
 
     suspend fun signUp(credentials: CredentialsEntity): Boolean
+
+    suspend fun signIn(credentials: CredentialsEntity): Boolean
 }

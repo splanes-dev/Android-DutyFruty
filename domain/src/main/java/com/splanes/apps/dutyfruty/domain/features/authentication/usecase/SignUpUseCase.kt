@@ -9,6 +9,8 @@ class SignUpUseCase @Inject constructor(
     private val repository: AuthRepository,
 ) : UseCase<CredentialsData, Boolean>() {
 
-    override suspend fun execute(params: CredentialsData): Boolean =
-        repository.signUp(params)
+    override suspend fun execute(params: CredentialsData): Boolean {
+        val signUpSuccess = repository.signUp(params)
+        return signUpSuccess && repository.saveSignInData(params)
+    }
 }

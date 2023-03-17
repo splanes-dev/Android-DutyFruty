@@ -4,6 +4,7 @@ import com.splanes.apps.dutyfruty.domain.features.authentication.model.Credentia
 
 interface AuthRepository {
     suspend fun getSignInData(): CredentialsData?
+    suspend fun saveSignInData(credentials: CredentialsData): Boolean
     suspend fun signIn(credentials: CredentialsData): Boolean
     suspend fun signUp(credentials: CredentialsData): Boolean
 }

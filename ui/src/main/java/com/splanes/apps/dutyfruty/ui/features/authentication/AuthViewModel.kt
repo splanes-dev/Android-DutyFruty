@@ -28,20 +28,27 @@ class AuthViewModel @Inject constructor(
         .map { viewModelState -> viewModelState.authState() }
         .eagerly(viewModelState.value.authState())
 
+    private val _uiSideEffect: MutableStateFlow<AuthSideEffect> = MutableStateFlow(AuthSideEffect.None)
+
+    val uiSideEffect: StateFlow<AuthSideEffect> = _uiSideEffect.eagerly(AuthSideEffect.None)
+
     init {
         fetchSignInData()
     }
 
     private fun fetchSignInData() {
+        viewModelState.update { state -> state.copy(isLoading = true) }
         launch {
-            viewModelState.update { state -> state.copy(isLoading = true) }
             getCredentialsUseCase()
-                .onSuccess { signInData ->
+                .onSuccess { credentials ->
                     viewModelState.update { state ->
                         state.copy(
                             isLoading = false,
-                            credentialsData = signInData,
+                            credentials = credentials,
                         )
+                    }
+                    if (credentials != null) {
+                        _uiSideEffect.value = AuthSideEffect.SignIn(credentials)
                     }
                 }
                 .onError { error ->
@@ -56,15 +63,63 @@ class AuthViewModel @Inject constructor(
     }
 
     fun onSignUp(form: SignUpFormData) {
+        viewModelState.update { state -> state.copy(isLoading = true) }
+        launch {
+            val credentials = CredentialsData(
+                username = form.username,
+                email = form.email,
+                password = form.password,
+            )
+            signUpUseCase(credentials)
+                .onSuccess { isSuccess ->
+                    viewModelState.update { state -> state.copy(isLoading = false) }
+                    if (isSuccess) {
+                        _uiSideEffect.value = AuthSideEffect.NavToDashboard
+                    } else {
+                        viewModelState.update { state -> state.copy(error = KnownError.Undefined) } // TODO: Change to SignUpError
+                    }
+                }
+                .onError { error ->
+                    viewModelState.update { state ->
+                        state.copy(
+                            isLoading = false,
+                            error = error,
+                        )
+                    }
+                }
+        }
+    }
+
+    fun onSignIn(credentials: CredentialsData) {
+        viewModelState.update { state -> state.copy(isLoading = true) }
+        launch {
+            signInUseCase(credentials)
+                .onSuccess { isSuccess ->
+                    viewModelState.update { state -> state.copy(isLoading = false) }
+                    if (isSuccess) {
+                        _uiSideEffect.value = AuthSideEffect.NavToDashboard
+                    } else {
+                        viewModelState.update { state -> state.copy(error = KnownError.Undefined) } // TODO: Change to SignInError
+                    }
+                }
+                .onError { error ->
+                    viewModelState.update { state ->
+                        state.copy(
+                            isLoading = false,
+                            error = error,
+                        )
+                    }
+                }
+        }
     }
 
     private data class ViewModelState(
         val isLoading: Boolean = true,
         val error: KnownError? = null,
-        val credentialsData: CredentialsData? = null,
+        val credentials: CredentialsData? = null,
     ) {
         fun authState(): AuthState =
-            when (credentialsData) {
+            when (credentials) {
                 null -> AuthState.SignUp(
                     loading = isLoading,
                     error = error,
@@ -73,6 +128,7 @@ class AuthViewModel @Inject constructor(
                 else -> AuthState.AutoSignIn(
                     loading = isLoading,
                     error = error,
+                    credentials = credentials,
                 )
             }
     }
