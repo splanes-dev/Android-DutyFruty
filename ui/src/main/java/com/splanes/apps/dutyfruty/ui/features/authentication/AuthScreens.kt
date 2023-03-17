@@ -17,6 +17,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.splanes.apps.dutyfruty.ui.R
 import com.splanes.apps.dutyfruty.ui.components.anim.LottieAnimation
+import com.splanes.apps.dutyfruty.ui.components.loader.LoadingBox
 import com.splanes.apps.dutyfruty.ui.features.authentication.components.form.SignUpForm
 import com.splanes.apps.dutyfruty.ui.features.authentication.components.form.SignUpFormData
 
@@ -35,33 +36,39 @@ fun AuthLoadingScreen() {
 
 @Composable
 fun AuthSignUpScreen(
+    uiState: AuthState.SignUp,
     onSignUp: (SignUpFormData) -> Unit,
 ) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
+    LoadingBox(
+        modifier = Modifier.fillMaxSize(),
+        loading = uiState.loading,
     ) {
-        Spacer(modifier = Modifier.height(24.dp))
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            Spacer(modifier = Modifier.height(24.dp))
 
-        Text(
-            text = stringResource(id = R.string.app_name),
-            style = MaterialTheme.typography.displayLarge,
-            color = MaterialTheme.colorScheme.onSurface,
-        )
+            Text(
+                text = stringResource(id = R.string.app_name),
+                style = MaterialTheme.typography.displayLarge,
+                color = MaterialTheme.colorScheme.onSurface,
+            )
 
-        Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(24.dp))
 
-        Text(
-            text = stringResource(id = R.string.sign_up_subtitle),
-            style = MaterialTheme.typography.headlineSmall,
-            color = MaterialTheme.colorScheme.onSurface,
-            textAlign = TextAlign.Justify,
-        )
+            Text(
+                text = stringResource(id = R.string.sign_up_subtitle),
+                style = MaterialTheme.typography.headlineSmall,
+                color = MaterialTheme.colorScheme.onSurface,
+                textAlign = TextAlign.Justify,
+            )
 
-        Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
-        SignUpForm(onSubmit = onSignUp)
+            SignUpForm(onSubmit = onSignUp)
+        }
     }
 }

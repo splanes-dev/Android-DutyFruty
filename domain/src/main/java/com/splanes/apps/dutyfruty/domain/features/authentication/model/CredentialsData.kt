@@ -4,4 +4,12 @@ data class CredentialsData(
     val username: String,
     val email: String,
     val password: String,
-)
+) {
+    companion object {
+        val Empty = CredentialsData(
+            username = "",
+            email = "",
+            password = "",
+        )
+    }
+}

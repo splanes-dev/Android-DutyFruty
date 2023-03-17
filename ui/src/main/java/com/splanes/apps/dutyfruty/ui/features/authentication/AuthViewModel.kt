@@ -28,7 +28,8 @@ class AuthViewModel @Inject constructor(
         .map { viewModelState -> viewModelState.authState() }
         .eagerly(viewModelState.value.authState())
 
-    private val _uiSideEffect: MutableStateFlow<AuthSideEffect> = MutableStateFlow(AuthSideEffect.None)
+    private val _uiSideEffect: MutableStateFlow<AuthSideEffect> =
+        MutableStateFlow(AuthSideEffect.None)
 
     val uiSideEffect: StateFlow<AuthSideEffect> = _uiSideEffect.eagerly(AuthSideEffect.None)
 
@@ -76,7 +77,7 @@ class AuthViewModel @Inject constructor(
                     if (isSuccess) {
                         _uiSideEffect.value = AuthSideEffect.NavToDashboard
                     } else {
-                        viewModelState.update { state -> state.copy(error = KnownError.Undefined) } // TODO: Change to SignUpError
+                        viewModelState.update { state -> state.copy(error = KnownError.SignUpError) }
                     }
                 }
                 .onError { error ->
@@ -99,7 +100,7 @@ class AuthViewModel @Inject constructor(
                     if (isSuccess) {
                         _uiSideEffect.value = AuthSideEffect.NavToDashboard
                     } else {
-                        viewModelState.update { state -> state.copy(error = KnownError.Undefined) } // TODO: Change to SignInError
+                        viewModelState.update { state -> state.copy(error = KnownError.SignInError) }
                     }
                 }
                 .onError { error ->
@@ -116,7 +117,7 @@ class AuthViewModel @Inject constructor(
     private data class ViewModelState(
         val isLoading: Boolean = true,
         val error: KnownError? = null,
-        val credentials: CredentialsData? = null,
+        val credentials: CredentialsData? = CredentialsData.Empty,
     ) {
         fun authState(): AuthState =
             when (credentials) {

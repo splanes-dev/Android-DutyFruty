@@ -42,7 +42,7 @@ fun AuthRoute(
     ) { authState ->
         when (authState) {
             is AuthState.AutoSignIn -> AuthLoadingScreen()
-            is AuthState.SignUp -> AuthSignUpScreen(onSignUp = onSignUp)
+            is AuthState.SignUp -> AuthSignUpScreen(uiState = authState, onSignUp = onSignUp)
         }
     }
 }
