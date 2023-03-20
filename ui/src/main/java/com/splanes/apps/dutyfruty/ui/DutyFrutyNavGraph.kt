@@ -8,6 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.splanes.apps.dutyfruty.ui.features.authentication.AuthRoute
 import com.splanes.apps.dutyfruty.ui.features.authentication.AuthViewModel
+import com.splanes.apps.dutyfruty.ui.features.dashboard.DashboardRoute
 
 @Composable
 fun DutyFrutyNavGraph(
@@ -29,6 +30,7 @@ fun DutyFrutyNavGraph(
             )
         }
         composable(DutyFrutyDestinations.Dashboard) {
+            DashboardRoute()
         }
     }
 }

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="scheduled_task_empty">No task scheduled</string>
+    <string name="scheduled_task_empty_description">Start scheduling your tasks and increase your productivity 📆</string>
+    <string name="task_weight">Estimated cost</string>
+</resources>
