@@ -10,6 +10,17 @@ class CreateGroupUseCase @Inject constructor(
     private val repository: GroupsRepository
 ) : UseCase<CreateGroupRequest, Group>() {
 
-    override suspend fun execute(params: CreateGroupRequest): Group =
-        repository.saveGroup(params)
+    override suspend fun execute(params: CreateGroupRequest): Group {
+        val members = repository.getMembers(params.members)
+        val current = repository.getCurrentGroupMember()
+
+        val group = Group(
+            alias = params.alias,
+            owner = current,
+            members = members,
+            color = params.color
+        )
+        repository.saveGroup(group)
+        return group
+    }
 }

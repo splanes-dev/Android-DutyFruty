@@ -6,6 +6,7 @@
     <string name="scheduled_tasks">Scheduled</string>
     <string name="unplanned_tasks">Unplanned</string>
     <string name="groups">Groups</string>
+    <string name="groups_labels">Groups &amp; Labels</string>
     <string name="create_task">New task</string>
     <string name="task_name">Task name</string>
 </resources>

@@ -9,7 +9,9 @@ interface GroupsRepository {
 
     suspend fun getMembers(emails: List<String>): List<GroupMember>
 
-    suspend fun saveGroup(group: Group): Group
+    suspend fun getCurrentGroupMember(): GroupMember
+
+    suspend fun saveGroup(group: Group)
 
     suspend fun editGroup(group: Group)
 
