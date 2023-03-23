@@ -23,12 +23,16 @@ object GroupsCache {
         }
     }
 
+    @JvmName("saveAllMembers")
+    @JvmStatic
     fun saveAll(members: List<GroupMemberEntity>) {
         members
             .filter { m -> _members.none { it.id == m.id } }
             .run(_members::addAll)
     }
 
+    @JvmName("saveAllGroups")
+    @JvmStatic
     fun saveAll(groups: List<GroupEntity>) {
         groups
             .filter { g -> _groups.none { it.id == g.id } }
