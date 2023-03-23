@@ -6,12 +6,12 @@ import androidx.navigation.NavHostController
 object DashboardDestinations {
     val all: List<String>
         get() = listOf(
-            Timeline,
+            Groups,
             ScheduledTasks,
             UnplannedTasks,
             Profile,
         )
-    const val Timeline = "dashboard/timeline"
+    const val Groups = "dashboard/groups"
     const val ScheduledTasks = "dashboard/scheduled-tasks"
     const val UnplannedTasks = "dashboard/unplanned-tasks"
     const val Profile = "dashboard/profile"
@@ -26,8 +26,8 @@ class DashboardNavigationActions(private val navController: NavHostController) {
             restoreState = true
         }
     }
-    val navToTimeline: () -> Unit = {
-        navController.navigate(DashboardDestinations.Timeline) {
+    val navToGroups: () -> Unit = {
+        navController.navigate(DashboardDestinations.Groups) {
             popUpTo(navController.graph.findStartDestination().id) {
                 saveState = true
             }

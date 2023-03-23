@@ -6,10 +6,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Diversity3
 import androidx.compose.material.icons.rounded.Event
 import androidx.compose.material.icons.rounded.Person
 import androidx.compose.material.icons.rounded.Task
-import androidx.compose.material.icons.rounded.Timeline
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -34,7 +34,7 @@ fun DashboardNavGraph(
     navActions: DashboardNavigationActions,
     current: NavBackStackEntry?,
     modifier: Modifier = Modifier,
-    startDestination: String = DashboardDestinations.Timeline,
+    startDestination: String = DashboardDestinations.ScheduledTasks,
 ) {
     Column(modifier = Modifier.fillMaxSize()) {
         NavHost(
@@ -42,7 +42,7 @@ fun DashboardNavGraph(
             navController = navController,
             startDestination = startDestination,
         ) {
-            composable(DashboardDestinations.Timeline) {
+            composable(DashboardDestinations.Groups) {
             }
             composable(DashboardDestinations.ScheduledTasks) {
                 val viewModel: ScheduledTaskViewModel = hiltViewModel()
@@ -62,7 +62,7 @@ fun DashboardNavGraph(
 
                 val label = when (destination) {
                     DashboardDestinations.Profile -> R.string.profile
-                    DashboardDestinations.Timeline -> R.string.timeline
+                    DashboardDestinations.Groups -> R.string.groups
                     DashboardDestinations.ScheduledTasks -> R.string.scheduled_tasks
                     DashboardDestinations.UnplannedTasks -> R.string.unplanned_tasks
                     else -> error("Destination not registered")
@@ -72,7 +72,7 @@ fun DashboardNavGraph(
                     selected = current.isSelected(destination),
                     onClick = when (destination) {
                         DashboardDestinations.Profile -> navActions.navToProfile
-                        DashboardDestinations.Timeline -> navActions.navToTimeline
+                        DashboardDestinations.Groups -> navActions.navToGroups
                         DashboardDestinations.ScheduledTasks -> navActions.navToScheduledTasks
                         DashboardDestinations.UnplannedTasks -> navActions.navToUnplannedTasks
                         else -> error("Destination not registered")
@@ -82,7 +82,7 @@ fun DashboardNavGraph(
                             imageVector = Icons.Rounded.run {
                                 when (destination) {
                                     DashboardDestinations.Profile -> Person
-                                    DashboardDestinations.Timeline -> Timeline
+                                    DashboardDestinations.Groups -> Diversity3
                                     DashboardDestinations.ScheduledTasks -> Event
                                     DashboardDestinations.UnplannedTasks -> Task
                                     else -> error("Destination not registered")
